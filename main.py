@@ -1,9 +1,9 @@
-import os
-import sqlalchemy
-import numpy as np
-from flask import Flask
-from datetime import datetime
+                                        
+import string
 import json
+import psycopg2
+from psycopg2 import sql, extras
+from flask import Flask, request
 
 app = Flask(__name__)
 
