@@ -1,4 +1,3 @@
-                                        
 import string
 import json
 import psycopg2
@@ -39,9 +38,9 @@ def get_data():
 
   # Get the example
   cmd = """SELECT json_build_object(
-  'type', 'FeatureCollection',
-  'features', json_agg(ST_AsGeoJSON(example.*)::json)
-  ) FROM example;"""
+'type', 'FeatureCollection',
+'features', json_agg(ST_AsGeoJSON(example.*)::json)
+) FROM example;"""
 
   # If want with CRS 'crs', json_build_object('type', 'name', properties', json_build_object( 'name', ST_SRID(>
 
