@@ -1,4 +1,4 @@
-import string
+import os
 import json
 import psycopg2
 import numpy as np
@@ -22,14 +22,13 @@ def hello():
 # route only prints data to console
 @app.route('/get_data', methods=['GET', 'POST'])
 def get_data():
-      pg_connection_dict = {
+    pg_connection_dict = {
   'dbname': 'lab0',
   'user': 'postgres',
   'password': 'postgres',
   'port': '5432',
   'host': '35.232.191.92'
   }
-
 
     conn = psycopg2.connect(**pg_connection_dict)
 
@@ -56,8 +55,6 @@ def get_data():
     conn.close()
 
     return geojson
-
-
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
