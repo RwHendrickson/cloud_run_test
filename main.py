@@ -31,31 +31,31 @@ def get_data():
   }
 
 
-  conn = psycopg2.connect(**pg_connection_dict)
+    conn = psycopg2.connect(**pg_connection_dict)
 
-  # Create json cursor
-  cur = conn.cursor(cursor_factory = extras.RealDictCursor)
+    # Create json cursor
+    cur = conn.cursor(cursor_factory = extras.RealDictCursor)
 
-  # Get the example
-  cmd = """SELECT json_build_object(
+    # Get the example
+    cmd = """SELECT json_build_object(
 'type', 'FeatureCollection',
 'features', json_agg(ST_AsGeoJSON(example.*)::json)
 ) FROM example;"""
 
-  # If want with CRS 'crs', json_build_object('type', 'name', properties', json_build_object( 'name', ST_SRID(>
+    # If want with CRS 'crs', json_build_object('type', 'name', properties', json_build_object( 'name', ST_SRID(>
 
-  cur.execute(cmd)
-  #  cur.execute('SELECT ST_ASGeoJSON(geom) FROM example')
+    cur.execute(cmd)
+    #  cur.execute('SELECT ST_ASGeoJSON(geom) FROM example')
 
-  conn.commit() # Committ command
+    conn.commit() # Committ command
 
-  geojson = json.loads(json.dumps(cur.fetchall()))[0]["json_build_object"]
+    geojson = json.loads(json.dumps(cur.fetchall()))[0]["json_build_object"]
 
-  # Close connection
-  cur.close()
-  conn.close()
+    # Close connection
+    cur.close()
+    conn.close()
 
-  return geojson
+    return geojson
 
 
 
