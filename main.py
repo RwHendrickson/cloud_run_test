@@ -2,6 +2,7 @@
 import string
 import json
 import psycopg2
+import numpy as np
 from psycopg2 import sql, extras
 from flask import Flask, request
 
